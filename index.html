@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>CS Capstone ePortfolio | Gonzalo Patino</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- Keyboard skip -->
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- Fixed header: JS sets --header-h so nothing overlaps -->
+    <header class="site-header fixed-top" role="banner">
+      <nav class="navbar navbar-expand-md navbar-dark glass-nav" aria-label="Primary">
+        <div class="container container--narrow">
+          <a class="navbar-brand fw-semibold" href="#">
+            <span class="brand-primary">Computer Science Capstone ePortfolio</span><br />
+            <span class="small text-muted">CS-499 | Gonzalo Patino</span>
+          </a>
+
+          <button
+            class="navbar-toggler border-0"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#primaryNav"
+            aria-controls="primaryNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div id="primaryNav" class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav align-items-center gap-1">
+              <li class="nav-item"><a class="nav-link" href="#artifact">Artifact</a></li>
+              <li class="nav-item"><a class="nav-link" href="#code-review">Code Review</a></li>
+              <li class="nav-item"><a class="nav-link" href="#enhanced-code">Enhanced Code</a></li>
+              <li class="nav-item"><a class="nav-link" href="#self-assessment">Self-Assessment</a></li>
+              <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+
+              <!-- Theme -->
+              <li class="nav-item dropdown">
+                <button
+                  class="btn btn-outline-accent btn-sm dropdown-toggle ms-md-2"
+                  id="themeMenuButton"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Theme
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><button class="dropdown-item" data-theme-choice="system">System</button></li>
+                  <li><button class="dropdown-item" data-theme-choice="light">Light</button></li>
+                  <li><button class="dropdown-item" data-theme-choice="dark">Dark</button></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main" class="container container--narrow my-4" role="main">
+      <section id="artifact" class="card card--surface p-4 mb-4 reveal">
+        <h2>Artifact</h2>
+        <p class="muted">
+          CS-350 Smart Thermostat on Raspberry Pi 4 with AHT20 sensor, 16x2 LCD, buttons, LEDs, and a finite state machine for control.
+        </p>
+        <ul class="list">
+          <li><strong>Software design</strong>: refactor into modules, interfaces, tests</li>
+          <li><strong>Algorithms</strong>: improved control logic, hysteresis, event handling</li>
+          <li><strong>Databases</strong>: PostgreSQL telemetry logging and queries</li>
+        </ul>
+      </section>
+
+      <section id="code-review" class="card card--surface p-4 mb-4 reveal">
+        <h2>Code Review</h2>
+        <p class="muted">Screencast of original code, issues found, and planned enhancements.</p>
+        <a class="btn btn-accent disabled" aria-disabled="true" href="#">Video link placeholder</a>
+      </section>
+
+      <section id="enhanced-code" class="card card--surface p-4 mb-4 reveal">
+        <h2>Enhanced Code</h2>
+        <ul class="list">
+          <li><a href="#">Original repository section - placeholder</a></li>
+          <li><a href="#">Enhanced repository section - placeholder</a></li>
+        </ul>
+      </section>
+
+      <section id="self-assessment" class="card card--surface p-4 mb-4 reveal">
+        <h2>Professional Self-Assessment</h2>
+        <p class="muted">
+          Overview of strengths, specialization in embedded and IoT, and alignment to course outcomes. Full text will be added in Module 7.
+        </p>
+      </section>
+
+      <section id="about" class="card card--surface p-4 mb-4 reveal">
+        <h2>About</h2>
+        <ul class="list">
+          <li>Portfolio repository: <a href="https://github.com/gonzalopatino/gonzalopatino.github.io">gonzalopatino.github.io</a></li>
+          <li>Contact: <a href="mailto:gonzalopatino@users.noreply.github.com">email placeholder</a></li>
+        </ul>
+      </section>
+
+      <div class="text-end">
+        <a class="small" href="#top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">Back to top</a>
+      </div>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container container--narrow">
+        <p class="muted small mb-0">© 2025 Gonzalo Patino. Built with accessible HTML, Bootstrap 5, and modern JavaScript.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap bundle (includes Popper) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- App logic -->
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
