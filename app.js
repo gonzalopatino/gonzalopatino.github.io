@@ -23,18 +23,7 @@ function initHeaderSpacing() {
 
 
 
-function initTheme() {
-  const saved = localStorage.getItem(THEME_KEY) || 'dark';
-  applyTheme(saved);
-  document.querySelectorAll('[data-theme-choice]').forEach(el => {
-    el.addEventListener('click', (e) => {
-      const choice = e.currentTarget.getAttribute('data-theme-choice');
-      localStorage.setItem(THEME_KEY, choice);
-      applyTheme(choice);
-      setHeaderHeightVar(); // header colors might change size slightly
-    });
-  });
-}
+
 
 /* Scrollspy via IntersectionObserver */
 function initScrollspy() {
