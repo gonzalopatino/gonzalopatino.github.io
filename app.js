@@ -13,7 +13,7 @@ function setHeaderHeightVar() {
   // If CSS loaded earlier, ensure body respects the var now
   document.body.style.paddingTop = `var(--header-h)`;
 }
-
+// 
 function initHeaderSpacing() {
   setHeaderHeightVar();
   window.addEventListener('resize', setHeaderHeightVar, { passive: true });
