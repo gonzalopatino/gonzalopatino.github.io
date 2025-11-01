@@ -21,15 +21,7 @@ function initHeaderSpacing() {
   document.addEventListener('hidden.bs.collapse', setHeaderHeightVar);
 }
 
-/* Theme switcher */
-function applyTheme(choice) {
-  const root = document.documentElement;
-  if (choice === 'system') root.removeAttribute('data-theme');
-  else root.setAttribute('data-theme', choice);
 
-  const btn = document.getElementById('themeMenuButton');
-  if (btn) btn.textContent = `Theme: ${choice[0].toUpperCase()}${choice.slice(1)}`;
-}
 
 function initTheme() {
   const saved = localStorage.getItem(THEME_KEY) || 'dark';
