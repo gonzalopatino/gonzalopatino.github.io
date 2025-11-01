@@ -2,8 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CS Capstone ePortfolio | Gonzalo Patino</title>
+    <meta name="color-scheme" content="dark light" />
 
     <!-- Bootstrap CSS -->
     <link
@@ -18,10 +19,12 @@
   </head>
 
   <body>
+    <div id="top"></div>
+
     <!-- Keyboard skip -->
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Fixed header: JS sets --header-h so nothing overlaps -->
+    <!-- Fixed header -->
     <header class="site-header fixed-top" role="banner">
       <nav class="navbar navbar-expand-md navbar-dark glass-nav" aria-label="Primary">
         <div class="container container--narrow">
@@ -49,13 +52,6 @@
               <li class="nav-item"><a class="nav-link" href="#enhanced-code">Enhanced Code</a></li>
               <li class="nav-item"><a class="nav-link" href="#self-assessment">Self-Assessment</a></li>
               <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-
-              <!-- Theme -->
-              <li class="nav-item dropdown">
-                                  
-                
-                
-              </li>
             </ul>
           </div>
         </div>
@@ -84,8 +80,8 @@
       <section id="enhanced-code" class="card card--surface p-4 mb-4 reveal">
         <h2>Enhanced Code</h2>
         <ul class="list">
-          <li><a href="#">Original repository section - placeholder</a></li>
-          <li><a href="#">Enhanced repository section - placeholder</a></li>
+          <li><a href="#">Original repository section, placeholder</a></li>
+          <li><a href="#">Enhanced repository section, placeholder</a></li>
         </ul>
       </section>
 
@@ -99,23 +95,35 @@
       <section id="about" class="card card--surface p-4 mb-4 reveal">
         <h2>About</h2>
         <ul class="list">
-          <li>Portfolio repository: <a href="https://github.com/gonzalopatino/gonzalopatino.github.io">gonzalopatino.github.io</a></li>
-          <li>Contact: <a href="mailto:gonzalopatino@users.noreply.github.com">email placeholder</a></li>
+          <li>
+            Portfolio repository:
+            <a href="https://github.com/gonzalopatino/gonzalopatino.github.io">gonzalopatino.github.io</a>
+          </li>
+          <li>
+            Contact:
+            <a href="mailto:gonzalopatino@users.noreply.github.com">email placeholder</a>
+          </li>
         </ul>
       </section>
 
       <div class="text-end">
-        <a class="small" href="#top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">Back to top</a>
+        <a
+          class="small"
+          href="#top"
+          onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;"
+        >Back to top</a>
       </div>
     </main>
 
     <footer class="site-footer" role="contentinfo">
       <div class="container container--narrow">
-        <p class="muted small mb-0">© 2025 Gonzalo Patino. Built with accessible HTML, Bootstrap 5, and modern JavaScript.</p>
+        <p class="muted small mb-0">
+          © 2025 Gonzalo Patino. Built with accessible HTML, Bootstrap 5, and modern JavaScript.
+        </p>
       </div>
     </footer>
 
-    <!-- Bootstrap bundle (includes Popper) -->
+    <!-- Bootstrap bundle -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

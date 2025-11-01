@@ -1,8 +1,6 @@
 /* Minimal, reliable enhancements */
 
-const THEME_KEY = 'gp_theme_choice';
-
-
+// Removed unused THEME_KEY and any theme switching per your request
 
 /* Fixed-header spacing: measure and set CSS var */
 function setHeaderHeightVar() {
@@ -10,20 +8,16 @@ function setHeaderHeightVar() {
   if (!header) return;
   const h = Math.ceil(header.getBoundingClientRect().height);
   document.documentElement.style.setProperty('--header-h', `${h}px`);
-  // If CSS loaded earlier, ensure body respects the var now
+  // ensure body respects the var now
   document.body.style.paddingTop = `var(--header-h)`;
 }
-// 
+
 function initHeaderSpacing() {
   setHeaderHeightVar();
   window.addEventListener('resize', setHeaderHeightVar, { passive: true });
   document.addEventListener('shown.bs.collapse', setHeaderHeightVar);
   document.addEventListener('hidden.bs.collapse', setHeaderHeightVar);
 }
-
-
-
-
 
 /* Scrollspy via IntersectionObserver */
 function initScrollspy() {
@@ -46,8 +40,6 @@ function initScrollspy() {
 
   sections.forEach(sec => observer.observe(sec));
 }
-
-
 
 /* Smooth anchors accounting for fixed header */
 function initSmoothAnchors() {
@@ -95,7 +87,7 @@ function initExternalLinks() {
 /* Boot */
 document.addEventListener('DOMContentLoaded', () => {
   initHeaderSpacing();
-  initTheme();
+  // initTheme();  // removed
   initScrollspy();
   initSmoothAnchors();
   initExternalLinks();
