@@ -1,0 +1,44 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#2d4a6f', 'primaryTextColor': '#fff', 'primaryBorderColor': '#1a1a2e', 'lineColor': '#333'}}}%%
+flowchart TB
+    subgraph Application["Application Layer"]
+        direction LR
+        APP_THERMO["app_thermostat<br/>Main application logic"]
+        APP_TASKS["Task Implementations<br/>Sensor, Control, Display, etc."]
+    end
+    
+    subgraph Core["Core Layer"]
+        direction LR
+        FSM["Finite State Machine<br/>Control algorithm"]
+        CONFIG["Configuration<br/>System parameters"]
+        LOGGING["Logging Module<br/>Structured logs"]
+        UTILS["Utilities<br/>Time, math helpers"]
+    end
+    
+    subgraph Drivers["Drivers Layer"]
+        direction LR
+        DRV_SENSOR["Sensor Driver<br/>DHT22 interface"]
+        DRV_RELAY["Relay Driver<br/>GPIO control"]
+        DRV_DISPLAY["Display Driver<br/>OLED SSD1306"]
+        DRV_WIFI["Wi-Fi Driver<br/>ESP-IDF wrapper"]
+    end
+    
+    subgraph HAL["Hardware Abstraction Layer"]
+        direction LR
+        HAL_GPIO["GPIO HAL<br/>Pin configuration"]
+        HAL_I2C["I2C HAL<br/>Bus management"]
+        HAL_TIMER["Timer HAL<br/>System timing"]
+    end
+    
+    subgraph Hardware["Hardware"]
+        direction LR
+        ESP32["ESP32 MCU"]
+        DHT22["DHT22 Sensor"]
+        RELAY["Relay Module"]
+        OLED["OLED Display"]
+    end
+    
+    Application --> Core
+    Application --> Drivers
+    Core --> Drivers
+    Drivers --> HAL
+    HAL --> Hardware

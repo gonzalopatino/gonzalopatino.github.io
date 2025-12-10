@@ -1,0 +1,60 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#2d4a6f', 'primaryTextColor': '#fff', 'primaryBorderColor': '#1a1a2e', 'lineColor': '#333'}}}%%
+erDiagram
+    USER ||--o{ DEVICE : owns
+    USER ||--o{ DEVICE_ALERT_SETTINGS : configures
+    DEVICE ||--o{ TELEMETRY_SNAPSHOT : generates
+    DEVICE ||--o| DEVICE_API_KEY : authenticates_with
+    DEVICE ||--o{ DEVICE_ALERT_SETTINGS : has
+    
+    USER {
+        int id PK
+        string username UK
+        string email UK
+        string password_hash
+        datetime date_joined
+        boolean is_active
+    }
+    
+    DEVICE {
+        int id PK
+        int user_id FK
+        string device_id UK
+        string name
+        string location
+        datetime registered_at
+        datetime last_seen
+        boolean is_active
+    }
+    
+    DEVICE_API_KEY {
+        int id PK
+        int device_id FK,UK
+        string key_hash
+        string key_prefix
+        datetime created_at
+        datetime last_used
+        boolean is_active
+    }
+    
+    TELEMETRY_SNAPSHOT {
+        int id PK
+        int device_id FK
+        float temperature_c
+        float humidity_pct
+        float setpoint_c
+        float hysteresis_c
+        string system_state
+        boolean heater_on
+        boolean cooler_on
+        datetime recorded_at
+    }
+    
+    DEVICE_ALERT_SETTINGS {
+        int id PK
+        int device_id FK
+        int user_id FK
+        string alert_type
+        float threshold_value
+        boolean is_enabled
+        datetime created_at
+    }

@@ -95,10 +95,25 @@ export default function Database() {
         <p>
           Supporting materials for this artifact:
         </p>
+        <h4>Database Diagrams</h4>
+        <ul>
+          <li>
+            <strong>Database Entity-Relationship Diagram</strong> - Shows the normalized schema including User, Device, DeviceAPIKey, TelemetrySnapshot, and DeviceAlertSettings entities with their relationships.
+            <br />
+            <img src="/src/assets/diagrams/db-erd.png" alt="Database ERD" style={{ maxWidth: '100%', marginTop: '10px', border: '1px solid #ddd', borderRadius: '4px' }} />
+          </li>
+          <li>
+            <strong>Telemetry Ingestion Pipeline</strong> - Illustrates the complete data flow from ESP32 sensor reading through API authentication, validation, and database storage.
+            <br />
+            <img src="/src/assets/diagrams/telemetry-pipeline.png" alt="Telemetry Ingestion Pipeline Diagram" style={{ maxWidth: '100%', marginTop: '10px', border: '1px solid #ddd', borderRadius: '4px' }} />
+          </li>
+        </ul>
+        <h4>Code Repositories</h4>
         <ul>
           <li><Link to="/original-code">Original Code Repository</Link></li>
           <li><Link to="/enhanced-code">Enhanced Code Repository</Link></li>
           <li><a href="https://github.com/gonzalopatino/ESP32_FreeRTOS_Thermostat" target="_blank" rel="noopener noreferrer">GitHub: ESP32 FreeRTOS Thermostat</a></li>
+          <li><a href="https://github.com/gonzalopatino/ESP32_FreeRTOS_Thermostat_Server" target="_blank" rel="noopener noreferrer">GitHub: Django Backend Server</a></li>
         </ul>
       </Section>
     </>

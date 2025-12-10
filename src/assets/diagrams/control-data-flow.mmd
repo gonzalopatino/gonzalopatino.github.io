@@ -1,0 +1,46 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#2d4a6f', 'primaryTextColor': '#fff', 'primaryBorderColor': '#1a1a2e', 'lineColor': '#333'}}}%%
+flowchart LR
+    subgraph Input["Sensor Input"]
+        DHT22["DHT22<br/>Temperature<br/>Humidity"]
+    end
+    
+    subgraph Processing["Control Processing"]
+        direction TB
+        READ["Read Sensor<br/>─────────<br/>Validate reading<br/>Check bounds"]
+        
+        EVAL["Evaluate State<br/>─────────<br/>Compare to thresholds<br/>Check hysteresis band"]
+        
+        TRANSITION["State Transition<br/>─────────<br/>Table lookup<br/>Check timing constraints"]
+        
+        ACTION["Execute Action<br/>─────────<br/>Update outputs<br/>Log state change"]
+    end
+    
+    subgraph State["System State"]
+        direction TB
+        CURRENT["Current State<br/>─────────<br/>Idle | Heating<br/>Cooling | Error"]
+        
+        SETPOINT["Setpoint<br/>─────────<br/>Target temp<br/>Hysteresis band"]
+        
+        TIMERS["Timing State<br/>─────────<br/>State entry time<br/>Last evaluation"]
+    end
+    
+    subgraph Output["Control Output"]
+        RELAY_H["Heater Relay<br/>GPIO Output"]
+        RELAY_C["Cooler Relay<br/>GPIO Output"]
+        TELEMETRY["Telemetry<br/>Queue to Backend"]
+    end
+    
+    DHT22 --> READ
+    READ --> EVAL
+    EVAL --> TRANSITION
+    TRANSITION --> ACTION
+    
+    CURRENT --> EVAL
+    SETPOINT --> EVAL
+    TIMERS --> TRANSITION
+    
+    ACTION --> CURRENT
+    ACTION --> TIMERS
+    ACTION --> RELAY_H
+    ACTION --> RELAY_C
+    ACTION --> TELEMETRY

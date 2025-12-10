@@ -1,0 +1,45 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#2d4a6f', 'primaryTextColor': '#fff', 'primaryBorderColor': '#1a1a2e', 'lineColor': '#333', 'secondaryColor': '#f8f9fa', 'tertiaryColor': '#fff'}}}%%
+flowchart TB
+    subgraph FreeRTOS["FreeRTOS Kernel"]
+        direction TB
+        
+        subgraph HighPriority["High Priority Tasks"]
+            SENSOR["Sensor Task<br/>Priority: 5<br/>Reads DHT22 sensor"]
+            CONTROL["Control Task<br/>Priority: 4<br/>FSM control logic"]
+            HEARTBEAT["Heartbeat Task<br/>Priority: 4<br/>Watchdog & health"]
+        end
+        
+        subgraph MediumPriority["Medium Priority Tasks"]
+            DISPLAY["Display Task<br/>Priority: 3<br/>OLED updates"]
+            WIFI["Wi-Fi Task<br/>Priority: 3<br/>Network management"]
+            TELEMETRY["Telemetry Task<br/>Priority: 2<br/>Backend sync"]
+        end
+        
+        subgraph LowPriority["Low Priority Tasks"]
+            LOGGER["Logger Task<br/>Priority: 1<br/>Structured logging"]
+        end
+    end
+    
+    subgraph SharedResources["Shared Resources"]
+        SENSOR_DATA[("Sensor Data<br/>Mutex Protected")]
+        SYSTEM_STATE[("System State<br/>Mutex Protected")]
+        LOG_QUEUE[["Log Queue<br/>Thread-Safe"]]
+        TELEMETRY_QUEUE[["Telemetry Queue<br/>Thread-Safe"]]
+    end
+    
+    SENSOR -->|"Writes"| SENSOR_DATA
+    CONTROL -->|"Reads"| SENSOR_DATA
+    CONTROL -->|"Updates"| SYSTEM_STATE
+    DISPLAY -->|"Reads"| SENSOR_DATA
+    DISPLAY -->|"Reads"| SYSTEM_STATE
+    TELEMETRY -->|"Reads"| SENSOR_DATA
+    TELEMETRY -->|"Reads"| SYSTEM_STATE
+    
+    SENSOR -->|"Logs"| LOG_QUEUE
+    CONTROL -->|"Logs"| LOG_QUEUE
+    WIFI -->|"Logs"| LOG_QUEUE
+    TELEMETRY -->|"Logs"| LOG_QUEUE
+    LOGGER -->|"Consumes"| LOG_QUEUE
+    
+    CONTROL -->|"Enqueues"| TELEMETRY_QUEUE
+    TELEMETRY -->|"Consumes"| TELEMETRY_QUEUE

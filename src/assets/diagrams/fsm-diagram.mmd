@@ -1,0 +1,42 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#2d4a6f', 'primaryTextColor': '#fff', 'primaryBorderColor': '#1a1a2e', 'lineColor': '#333'}}}%%
+stateDiagram-v2
+    [*] --> Idle: System Start
+    
+    Idle --> Heating: temp < (setpoint - hysteresis)
+    Idle --> Cooling: temp > (setpoint + hysteresis)
+    Idle --> Error: Sensor Fault
+    
+    Heating --> Idle: temp >= setpoint AND min_on_time elapsed
+    Heating --> Error: Sensor Fault
+    Heating --> Heating: temp < setpoint OR min_on_time not elapsed
+    
+    Cooling --> Idle: temp <= setpoint AND min_on_time elapsed
+    Cooling --> Error: Sensor Fault
+    Cooling --> Cooling: temp > setpoint OR min_on_time not elapsed
+    
+    Error --> Idle: Sensor Recovered AND min_off_time elapsed
+    Error --> Error: Sensor Still Faulted
+    
+    note right of Idle
+        Heater OFF
+        Cooler OFF
+        Monitoring temperature
+    end note
+    
+    note right of Heating
+        Heater ON
+        Cooler OFF
+        Min run time enforced
+    end note
+    
+    note right of Cooling
+        Heater OFF
+        Cooler ON
+        Min run time enforced
+    end note
+    
+    note right of Error
+        All outputs OFF
+        Safe fallback state
+        Awaiting recovery
+    end note

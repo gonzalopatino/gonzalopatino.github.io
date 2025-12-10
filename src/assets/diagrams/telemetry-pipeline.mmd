@@ -1,0 +1,53 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#2d4a6f', 'primaryTextColor': '#fff', 'primaryBorderColor': '#1a1a2e', 'lineColor': '#333'}}}%%
+flowchart TB
+    subgraph ESP32["ESP32 Thermostat"]
+        SENSOR_TASK["Sensor Task<br/>Collects readings"]
+        CONTROL_TASK["Control Task<br/>FSM decisions"]
+        TELEMETRY_TASK["Telemetry Task<br/>Builds JSON payload"]
+        WIFI_STACK["Wi-Fi Stack<br/>HTTPS POST"]
+    end
+    
+    subgraph Network["Network Layer"]
+        TLS["TLS 1.2/1.3<br/>Encrypted channel"]
+    end
+    
+    subgraph Django["Django Backend"]
+        direction TB
+        API_ENDPOINT["/api/telemetry/<br/>POST endpoint"]
+        
+        AUTH["Authentication<br/>─────────<br/>Validate API key hash<br/>Check device registration"]
+        
+        VALIDATE["Validation<br/>─────────<br/>Check required fields<br/>Validate value ranges<br/>Normalize timestamps"]
+        
+        RATE_LIMIT["Rate Limiting<br/>─────────<br/>Per-device throttle<br/>Quota enforcement"]
+        
+        ORM["Django ORM<br/>─────────<br/>Create snapshot<br/>Update last_seen"]
+    end
+    
+    subgraph PostgreSQL["PostgreSQL Database"]
+        SNAPSHOTS[("telemetry_snapshot<br/>─────────<br/>Indexed by device_id<br/>Indexed by recorded_at")]
+        DEVICES[("device<br/>─────────<br/>last_seen updated")]
+    end
+    
+    subgraph Response["API Response"]
+        SUCCESS["200 OK<br/>Snapshot stored"]
+        REJECT["4xx Error<br/>Auth/Validation failed"]
+    end
+    
+    SENSOR_TASK --> CONTROL_TASK
+    CONTROL_TASK --> TELEMETRY_TASK
+    TELEMETRY_TASK --> WIFI_STACK
+    WIFI_STACK --> TLS
+    TLS --> API_ENDPOINT
+    
+    API_ENDPOINT --> AUTH
+    AUTH -->|"Valid"| VALIDATE
+    AUTH -->|"Invalid"| REJECT
+    VALIDATE -->|"Valid"| RATE_LIMIT
+    VALIDATE -->|"Invalid"| REJECT
+    RATE_LIMIT -->|"Allowed"| ORM
+    RATE_LIMIT -->|"Exceeded"| REJECT
+    
+    ORM --> SNAPSHOTS
+    ORM --> DEVICES
+    ORM --> SUCCESS

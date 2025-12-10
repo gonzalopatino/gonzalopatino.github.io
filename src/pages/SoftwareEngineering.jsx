@@ -89,6 +89,25 @@ export default function SoftwareEngineering() {
         <p>
           Supporting materials for this artifact:
         </p>
+        <h4>Architecture Diagrams</h4>
+        <ul>
+          <li>
+            <strong>FreeRTOS Task Architecture</strong> - Shows all concurrent tasks, their priorities, and inter-task communication through queues and shared resources.
+            <br />
+            <img src="/src/assets/diagrams/task-architecture.png" alt="FreeRTOS Task Architecture Diagram" style={{ maxWidth: '100%', marginTop: '10px', border: '1px solid #ddd', borderRadius: '4px' }} />
+          </li>
+          <li>
+            <strong>Firmware Layered Architecture</strong> - Illustrates the separation between Application, Core, Drivers, and HAL layers.
+            <br />
+            <img src="/src/assets/diagrams/layered-architecture.png" alt="Firmware Layered Architecture Diagram" style={{ maxWidth: '100%', marginTop: '10px', border: '1px solid #ddd', borderRadius: '4px' }} />
+          </li>
+          <li>
+            <strong>Configuration and HAL Structure</strong> - Details the configuration headers and hardware abstraction modules.
+            <br />
+            <img src="/src/assets/diagrams/config-hal-structure.png" alt="Configuration and HAL Structure Diagram" style={{ maxWidth: '100%', marginTop: '10px', border: '1px solid #ddd', borderRadius: '4px' }} />
+          </li>
+        </ul>
+        <h4>Code Repositories</h4>
         <ul>
           <li><Link to="/original-code">Original Code Repository</Link></li>
           <li><Link to="/enhanced-code">Enhanced Code Repository</Link></li>

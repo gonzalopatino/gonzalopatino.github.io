@@ -1,0 +1,32 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#2d4a6f', 'primaryTextColor': '#fff', 'primaryBorderColor': '#1a1a2e', 'lineColor': '#333'}}}%%
+flowchart LR
+    subgraph ConfigFiles["Configuration Headers"]
+        direction TB
+        THERMO_CFG["thermostat_config.h<br/>─────────────────<br/>DEFAULT_SETPOINT_C<br/>HYSTERESIS_C<br/>MIN_ON_TIME_MS<br/>MIN_OFF_TIME_MS"]
+        
+        HW_CFG["hardware_config.h<br/>─────────────────<br/>DHT22_GPIO_PIN<br/>RELAY_GPIO_PIN<br/>I2C_SDA_PIN<br/>I2C_SCL_PIN"]
+        
+        NET_CFG["network_config.h<br/>─────────────────<br/>WIFI_SSID<br/>WIFI_PASSWORD<br/>API_SERVER_URL<br/>API_KEY"]
+        
+        TASK_CFG["task_config.h<br/>─────────────────<br/>SENSOR_TASK_PERIOD_MS<br/>CONTROL_TASK_PERIOD_MS<br/>TELEMETRY_INTERVAL_MS<br/>LOG_QUEUE_SIZE"]
+    end
+    
+    subgraph HALModules["Hardware Abstraction"]
+        direction TB
+        GPIO_HAL["gpio_hal.c/h<br/>─────────────────<br/>gpio_hal_init()<br/>gpio_hal_set_output()<br/>gpio_hal_read_input()"]
+        
+        I2C_HAL["i2c_hal.c/h<br/>─────────────────<br/>i2c_hal_init()<br/>i2c_hal_write()<br/>i2c_hal_read()"]
+        
+        TIMER_HAL["timer_hal.c/h<br/>─────────────────<br/>timer_hal_get_ms()<br/>timer_hal_delay()<br/>timer_hal_elapsed()"]
+    end
+    
+    subgraph Drivers["Driver Modules"]
+        direction TB
+        DHT_DRV["dht22_driver.c"]
+        RELAY_DRV["relay_driver.c"]
+        DISPLAY_DRV["display_driver.c"]
+    end
+    
+    ConfigFiles --> Drivers
+    HALModules --> Drivers
+    HW_CFG --> HALModules

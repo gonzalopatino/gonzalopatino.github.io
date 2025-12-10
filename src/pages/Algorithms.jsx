@@ -89,6 +89,20 @@ export default function Algorithms() {
         <p>
           Supporting materials for this artifact:
         </p>
+        <h4>Algorithm Diagrams</h4>
+        <ul>
+          <li>
+            <strong>Thermostat Control Finite State Machine</strong> - Shows the four states (Idle, Heating, Cooling, Error) and all valid transitions with their triggering conditions.
+            <br />
+            <img src="/src/assets/diagrams/fsm-diagram.png" alt="Thermostat Control FSM Diagram" style={{ maxWidth: '100%', marginTop: '10px', border: '1px solid #ddd', borderRadius: '4px' }} />
+          </li>
+          <li>
+            <strong>Control Data Flow</strong> - Illustrates the flow of data from sensor input through state evaluation to control output.
+            <br />
+            <img src="/src/assets/diagrams/control-data-flow.png" alt="Control Data Flow Diagram" style={{ maxWidth: '100%', marginTop: '10px', border: '1px solid #ddd', borderRadius: '4px' }} />
+          </li>
+        </ul>
+        <h4>Code Repositories</h4>
         <ul>
           <li><Link to="/original-code">Original Code Repository</Link></li>
           <li><Link to="/enhanced-code">Enhanced Code Repository</Link></li>
