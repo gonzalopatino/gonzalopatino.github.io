@@ -1,8 +1,16 @@
+import { Link } from 'react-router-dom';
 import Section from '../components/Section';
 
 export default function CodeReview() {
   return (
     <>
+      {/* Evaluator Guidance Banner */}
+      <Section title="Evaluator Guide" variant="highlight">
+        <p>
+          <strong>For Evaluators:</strong> This page presents the Code Review of the original CS-350 Raspberry Pi thermostat, including a narrated video walkthrough identifying architectural, algorithmic, and reliability issues. Links to original and enhanced code repositories are available in the navigation sidebar and at the bottom of this page.
+        </p>
+      </Section>
+
       <Section title="A. Code Review Introduction" variant="highlight">
         <p>
           The purpose of this code review was to perform a structured, professional analysis of the original CS-350 thermostat artifact running on a Raspberry Pi using Python. The review focused on identifying weaknesses in architecture, reliability, readability, algorithmic behavior, and long-term maintainability. This evaluation served as the foundation for the enhancements implemented in the CS-499 capstone, guiding the redesign of both the embedded firmware and the backend data platform.
@@ -10,9 +18,8 @@ export default function CodeReview() {
       </Section>
 
       <Section title="B. Code Review Video">
-        <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginBottom: '15px' }}>
+        <div className="video-container">
           <iframe
-            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none', borderRadius: '6px' }}
             src="https://www.youtube.com/embed/56SD_WsoBfo?start=24"
             title="Code Review Video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -84,6 +91,23 @@ export default function CodeReview() {
         </p>
         <p>
           This review also mirrored professional engineering practice, where peer code reviews are essential for producing maintainable, high-quality systems. By reviewing my own earlier work through this lens, I gained a deeper appreciation for structured design, testability, and long-term maintainability. The insights gained shaped every enhancement implemented in this project and strengthened my engineering discipline. I now recognize systematic code review as an indispensable part of building reliable software and an essential habit to carry into industry settings.
+        </p>
+      </Section>
+
+      {/* Evaluator Navigation */}
+      <Section title="Evaluator Navigation">
+        <p>Continue exploring the ePortfolio:</p>
+        <nav aria-label="Artifact navigation">
+          <ul className="evaluator-nav">
+            <li><Link to="/">Back to Home</Link></li>
+            <li><Link to="/assessment">Previous: Self-Assessment</Link></li>
+            <li><Link to="/software-engineering">Next: Software Engineering</Link></li>
+            <li><Link to="/original-code">Original Code</Link></li>
+            <li><Link to="/enhanced-code">Enhanced Code</Link></li>
+          </ul>
+        </nav>
+        <p className="meta-updated">
+          <em>Last updated: February 2025</em>
         </p>
       </Section>
     </>

@@ -1,9 +1,17 @@
 import { Link } from 'react-router-dom';
 import Section from '../components/Section';
+import DiagramViewer from '../components/DiagramViewer';
 
 export default function Database() {
   return (
     <>
+      {/* Evaluator Guidance Banner */}
+      <Section title="Evaluator Guide" variant="highlight">
+        <p>
+          <strong>For Evaluators:</strong> This page presents the Databases artifact, demonstrating PostgreSQL schema design, Django ORM integration, API authentication, and secure data handling practices. Links to original and enhanced code repositories are available in the navigation sidebar and at the bottom of this page. Database diagrams including the ERD and telemetry pipeline are provided in the Related Schema section below.
+        </p>
+      </Section>
+
       <Section title="Artifact Overview" variant="highlight">
         <p>
           This artifact demonstrates the database design and data management practices I implemented to support the thermostat ecosystem's backend infrastructure. The enhanced system uses PostgreSQL as its relational database, accessed through Django's ORM, to provide persistent storage for device telemetry, user accounts, device registrations, and alert configurations. Proper database design transforms the thermostat from an isolated embedded device into a connected system capable of historical analysis, trend visualization, and intelligent alerting.
@@ -96,18 +104,19 @@ export default function Database() {
           Supporting materials for this artifact:
         </p>
         <h4>Database Diagrams</h4>
-        <ul>
-          <li>
-            <strong>Database Entity-Relationship Diagram</strong> - Shows the normalized schema including User, Device, DeviceAPIKey, TelemetrySnapshot, and DeviceAlertSettings entities with their relationships.
-            <br />
-            <img src="/src/assets/diagrams/db-erd.png" alt="Database ERD" style={{ maxWidth: '100%', marginTop: '10px', border: '1px solid #ddd', borderRadius: '4px' }} />
-          </li>
-          <li>
-            <strong>Telemetry Ingestion Pipeline</strong> - Illustrates the complete data flow from ESP32 sensor reading through API authentication, validation, and database storage.
-            <br />
-            <img src="/src/assets/diagrams/telemetry-pipeline.png" alt="Telemetry Ingestion Pipeline Diagram" style={{ maxWidth: '100%', marginTop: '10px', border: '1px solid #ddd', borderRadius: '4px' }} />
-          </li>
-        </ul>
+        
+        <DiagramViewer 
+          src="/src/assets/diagrams/db-erd.png" 
+          alt="Database Entity-Relationship Diagram"
+          caption="Database Entity-Relationship Diagram — Shows the normalized schema including User, Device, DeviceAPIKey, TelemetrySnapshot, and DeviceAlertSettings entities with their relationships."
+        />
+        
+        <DiagramViewer 
+          src="/src/assets/diagrams/telemetry-pipeline.png" 
+          alt="Telemetry Ingestion Pipeline Diagram"
+          caption="Telemetry Ingestion Pipeline — Illustrates the complete data flow from ESP32 sensor reading through API authentication, validation, and database storage."
+        />
+        
         <h4>Code Repositories</h4>
         <ul>
           <li><Link to="/original-code">Original Code Repository</Link></li>
@@ -115,6 +124,23 @@ export default function Database() {
           <li><a href="https://github.com/gonzalopatino/ESP32_FreeRTOS_Thermostat" target="_blank" rel="noopener noreferrer">GitHub: ESP32 FreeRTOS Thermostat</a></li>
           <li><a href="https://github.com/gonzalopatino/ESP32_FreeRTOS_Thermostat_Server" target="_blank" rel="noopener noreferrer">GitHub: Django Backend Server</a></li>
         </ul>
+      </Section>
+
+      {/* Evaluator Navigation */}
+      <Section title="Evaluator Navigation">
+        <p>Continue exploring the ePortfolio:</p>
+        <nav aria-label="Artifact navigation">
+          <ul className="evaluator-nav">
+            <li><Link to="/">Back to Home</Link></li>
+            <li><Link to="/algorithms">Previous: Algorithms and Data Structures</Link></li>
+            <li><Link to="/original-code">Next: Original Code</Link></li>
+            <li><Link to="/original-code">Original Code</Link></li>
+            <li><Link to="/enhanced-code">Enhanced Code</Link></li>
+          </ul>
+        </nav>
+        <p className="meta-updated">
+          <em>Last updated: February 2025</em>
+        </p>
       </Section>
     </>
   );

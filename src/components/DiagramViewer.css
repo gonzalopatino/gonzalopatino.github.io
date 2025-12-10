@@ -1,0 +1,278 @@
+/* ============================================
+   DIAGRAM VIEWER COMPONENT STYLES
+   Modern, accessible image viewer with lightbox
+   ============================================ */
+
+/* Figure Container */
+.diagram-figure {
+  margin: var(--spacing-xl) 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-background-alt);
+  border: 1px solid var(--color-border);
+  transition: box-shadow var(--transition-base);
+}
+
+.diagram-figure:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Wrapper for Button */
+.diagram-wrapper {
+  position: relative;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+/* Clickable Button (entire image area) */
+.diagram-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: zoom-in;
+  position: relative;
+  overflow: hidden;
+}
+
+.diagram-button:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: -3px;
+}
+
+/* Thumbnail Image */
+.diagram-thumbnail {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform var(--transition-slow);
+}
+
+.diagram-button:hover .diagram-thumbnail {
+  transform: scale(1.02);
+}
+
+/* Hover Overlay */
+.diagram-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(26, 26, 46, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.diagram-button:hover .diagram-overlay,
+.diagram-button:focus-visible .diagram-overlay {
+  opacity: 1;
+}
+
+.diagram-zoom-icon {
+  width: 48px;
+  height: 48px;
+  color: white;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.diagram-zoom-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.diagram-zoom-text {
+  color: white;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Figure Caption */
+.diagram-figcaption {
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-background);
+  border-top: 1px solid var(--color-border-light);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-base);
+}
+
+/* ============================================
+   MODAL / LIGHTBOX STYLES
+   ============================================ */
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: var(--z-modal-backdrop);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  cursor: zoom-out;
+  animation: modalFadeIn 0.25s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from { 
+    opacity: 0;
+  }
+  to { 
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  max-width: 95vw;
+  max-height: 85vh;
+  cursor: default;
+  animation: modalScaleIn 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-2xl);
+  background: white;
+}
+
+.modal-caption {
+  margin-top: var(--spacing-md);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: var(--font-size-base);
+  text-align: center;
+  max-width: 600px;
+}
+
+.modal-hint {
+  position: absolute;
+  bottom: var(--spacing-lg);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: var(--font-size-sm);
+}
+
+/* Close Button */
+.modal-close-btn {
+  position: fixed;
+  top: var(--spacing-lg);
+  right: var(--spacing-lg);
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  color: white;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  z-index: calc(var(--z-modal) + 1);
+}
+
+.modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+.modal-close-btn:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+.modal-close-btn svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .diagram-figure {
+    margin: var(--spacing-lg) calc(-1 * var(--spacing-md));
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .modal-backdrop {
+    padding: var(--spacing-md);
+  }
+
+  .modal-close-btn {
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+  }
+
+  .modal-hint {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .diagram-zoom-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .diagram-figcaption {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+  .modal-backdrop {
+    display: none !important;
+  }
+
+  .diagram-overlay {
+    display: none !important;
+  }
+
+  .diagram-figure {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

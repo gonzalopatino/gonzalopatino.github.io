@@ -1,9 +1,17 @@
 import { Link } from 'react-router-dom';
 import Section from '../components/Section';
+import DiagramViewer from '../components/DiagramViewer';
 
 export default function SoftwareEngineering() {
   return (
     <>
+      {/* Evaluator Guidance Banner */}
+      <Section title="Evaluator Guide" variant="highlight">
+        <p>
+          <strong>For Evaluators:</strong> This page presents the Software Engineering and Design artifact, demonstrating modular architecture, FreeRTOS task management, and professional embedded systems practices. Links to original and enhanced code repositories are available in the navigation sidebar and at the bottom of this page. Architecture diagrams are provided in the Related Documents section below.
+        </p>
+      </Section>
+
       <Section title="Artifact Overview" variant="highlight">
         <p>
           This artifact showcases the software engineering and design practices I applied to transform a basic thermostat project into a professional-grade embedded system. The enhanced thermostat runs on an ESP32 microcontroller using FreeRTOS, featuring a modular task-based architecture that separates sensor reading, control logic, logging, and network communication into distinct, maintainable components. The system demonstrates core software engineering principles including separation of concerns, loose coupling, and cohesive module design.
@@ -90,29 +98,48 @@ export default function SoftwareEngineering() {
           Supporting materials for this artifact:
         </p>
         <h4>Architecture Diagrams</h4>
-        <ul>
-          <li>
-            <strong>FreeRTOS Task Architecture</strong> - Shows all concurrent tasks, their priorities, and inter-task communication through queues and shared resources.
-            <br />
-            <img src="/src/assets/diagrams/task-architecture.png" alt="FreeRTOS Task Architecture Diagram" style={{ maxWidth: '100%', marginTop: '10px', border: '1px solid #ddd', borderRadius: '4px' }} />
-          </li>
-          <li>
-            <strong>Firmware Layered Architecture</strong> - Illustrates the separation between Application, Core, Drivers, and HAL layers.
-            <br />
-            <img src="/src/assets/diagrams/layered-architecture.png" alt="Firmware Layered Architecture Diagram" style={{ maxWidth: '100%', marginTop: '10px', border: '1px solid #ddd', borderRadius: '4px' }} />
-          </li>
-          <li>
-            <strong>Configuration and HAL Structure</strong> - Details the configuration headers and hardware abstraction modules.
-            <br />
-            <img src="/src/assets/diagrams/config-hal-structure.png" alt="Configuration and HAL Structure Diagram" style={{ maxWidth: '100%', marginTop: '10px', border: '1px solid #ddd', borderRadius: '4px' }} />
-          </li>
-        </ul>
+        
+        <DiagramViewer 
+          src="/src/assets/diagrams/task-architecture.png" 
+          alt="FreeRTOS Task Architecture Diagram"
+          caption="FreeRTOS Task Architecture — Shows all concurrent tasks, their priorities, and inter-task communication through queues and shared resources."
+        />
+        
+        <DiagramViewer 
+          src="/src/assets/diagrams/layered-architecture.png" 
+          alt="Firmware Layered Architecture Diagram"
+          caption="Firmware Layered Architecture — Illustrates the separation between Application, Core, Drivers, and HAL layers."
+        />
+        
+        <DiagramViewer 
+          src="/src/assets/diagrams/config-hal-structure.png" 
+          alt="Configuration and HAL Structure Diagram"
+          caption="Configuration and HAL Structure — Details the configuration headers and hardware abstraction modules."
+        />
+        
         <h4>Code Repositories</h4>
         <ul>
           <li><Link to="/original-code">Original Code Repository</Link></li>
           <li><Link to="/enhanced-code">Enhanced Code Repository</Link></li>
           <li><a href="https://github.com/gonzalopatino/ESP32_FreeRTOS_Thermostat" target="_blank" rel="noopener noreferrer">GitHub: ESP32 FreeRTOS Thermostat</a></li>
         </ul>
+      </Section>
+
+      {/* Evaluator Navigation */}
+      <Section title="Evaluator Navigation">
+        <p>Continue exploring the ePortfolio:</p>
+        <nav aria-label="Artifact navigation">
+          <ul className="evaluator-nav">
+            <li><Link to="/">Back to Home</Link></li>
+            <li><Link to="/code-review">Previous: Code Review</Link></li>
+            <li><Link to="/algorithms">Next: Algorithms and Data Structures</Link></li>
+            <li><Link to="/original-code">Original Code</Link></li>
+            <li><Link to="/enhanced-code">Enhanced Code</Link></li>
+          </ul>
+        </nav>
+        <p className="meta-updated">
+          <em>Last updated: February 2025</em>
+        </p>
       </Section>
     </>
   );

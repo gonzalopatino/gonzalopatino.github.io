@@ -1,9 +1,17 @@
 import { Link } from 'react-router-dom';
 import Section from '../components/Section';
+import DiagramViewer from '../components/DiagramViewer';
 
 export default function Algorithms() {
   return (
     <>
+      {/* Evaluator Guidance Banner */}
+      <Section title="Evaluator Guide" variant="highlight">
+        <p>
+          <strong>For Evaluators:</strong> This page presents the Algorithms and Data Structures artifact, demonstrating the finite state machine design, hysteresis implementation, and timing constraints that govern thermostat control behavior. Links to original and enhanced code repositories are available in the navigation sidebar and at the bottom of this page. Algorithm diagrams including the FSM and data flow are provided in the Related Code section below.
+        </p>
+      </Section>
+
       <Section title="Artifact Overview" variant="highlight">
         <p>
           This artifact examines the algorithmic foundations of my thermostat control system, focusing on the computational logic that governs temperature regulation, state transitions, and system responsiveness. The enhanced design replaces a simplistic polling approach with a formal finite state machine, hysteresis-based decision making, and carefully chosen data structures that ensure deterministic, efficient operation on resource-constrained embedded hardware.
@@ -90,24 +98,42 @@ export default function Algorithms() {
           Supporting materials for this artifact:
         </p>
         <h4>Algorithm Diagrams</h4>
-        <ul>
-          <li>
-            <strong>Thermostat Control Finite State Machine</strong> - Shows the four states (Idle, Heating, Cooling, Error) and all valid transitions with their triggering conditions.
-            <br />
-            <img src="/src/assets/diagrams/fsm-diagram.png" alt="Thermostat Control FSM Diagram" style={{ maxWidth: '100%', marginTop: '10px', border: '1px solid #ddd', borderRadius: '4px' }} />
-          </li>
-          <li>
-            <strong>Control Data Flow</strong> - Illustrates the flow of data from sensor input through state evaluation to control output.
-            <br />
-            <img src="/src/assets/diagrams/control-data-flow.png" alt="Control Data Flow Diagram" style={{ maxWidth: '100%', marginTop: '10px', border: '1px solid #ddd', borderRadius: '4px' }} />
-          </li>
-        </ul>
+        
+        <DiagramViewer 
+          src="/src/assets/diagrams/fsm-diagram.png" 
+          alt="Thermostat Control FSM Diagram"
+          caption="Thermostat Control Finite State Machine — Shows the four states (Idle, Heating, Cooling, Error) and all valid transitions with their triggering conditions."
+        />
+        
+        <DiagramViewer 
+          src="/src/assets/diagrams/control-data-flow.png" 
+          alt="Control Data Flow Diagram"
+          caption="Control Data Flow — Illustrates the flow of data from sensor input through state evaluation to control output."
+        />
+        
         <h4>Code Repositories</h4>
         <ul>
           <li><Link to="/original-code">Original Code Repository</Link></li>
           <li><Link to="/enhanced-code">Enhanced Code Repository</Link></li>
           <li><a href="https://github.com/gonzalopatino/ESP32_FreeRTOS_Thermostat" target="_blank" rel="noopener noreferrer">GitHub: ESP32 FreeRTOS Thermostat</a></li>
         </ul>
+      </Section>
+
+      {/* Evaluator Navigation */}
+      <Section title="Evaluator Navigation">
+        <p>Continue exploring the ePortfolio:</p>
+        <nav aria-label="Artifact navigation">
+          <ul className="evaluator-nav">
+            <li><Link to="/">Back to Home</Link></li>
+            <li><Link to="/software-engineering">Previous: Software Engineering</Link></li>
+            <li><Link to="/database">Next: Databases</Link></li>
+            <li><Link to="/original-code">Original Code</Link></li>
+            <li><Link to="/enhanced-code">Enhanced Code</Link></li>
+          </ul>
+        </nav>
+        <p className="meta-updated">
+          <em>Last updated: February 2025</em>
+        </p>
       </Section>
     </>
   );
