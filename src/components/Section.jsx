@@ -1,15 +1,17 @@
 import './Section.css';
 
 /**
- * Section - Content section with optional anchor ID and variants
+ * Section - Content section with optional anchor ID, icons, and variants
  * @param {string} id - Optional anchor ID for TOC navigation
  * @param {string} title - Section heading
+ * @param {ReactNode} icon - Optional lucide-react icon
  * @param {string} variant - 'default' | 'highlight'
  * @param {string} headingLevel - 'h2' | 'h3' for proper heading hierarchy
  */
 export default function Section({ 
   id, 
   title, 
+  icon,
   variant = 'default', 
   headingLevel = 'h2',
   children 
@@ -29,6 +31,7 @@ export default function Section({
               #
             </a>
           )}
+          {icon && <span className="section-title__icon" aria-hidden="true">{icon}</span>}
           {title}
         </HeadingTag>
       )}

@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { ZoomIn, X } from 'lucide-react';
 import './DiagramViewer.css';
 
 /**
@@ -65,11 +66,7 @@ export default function DiagramViewer({
             />
             <div className="diagram-overlay">
               <span className="diagram-zoom-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="11" cy="11" r="8" />
-                  <path d="m21 21-4.35-4.35" />
-                  <path d="M11 8v6M8 11h6" />
-                </svg>
+                <ZoomIn size={24} />
               </span>
               <span className="diagram-zoom-text">Click to enlarge</span>
             </div>
@@ -97,9 +94,7 @@ export default function DiagramViewer({
             aria-label="Close fullscreen view"
             type="button"
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M18 6 6 18M6 6l12 12" />
-            </svg>
+            <X size={24} />
           </button>
           
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>

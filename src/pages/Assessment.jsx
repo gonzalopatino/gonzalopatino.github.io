@@ -1,9 +1,19 @@
+import { 
+  User, 
+  Route, 
+  Users, 
+  MessageSquare, 
+  Workflow, 
+  Settings, 
+  Shield, 
+  Award 
+} from 'lucide-react';
 import Section from '../components/Section';
 
 export default function Assessment() {
   return (
     <>
-      <Section title="Introduction" variant="highlight">
+      <Section title="Introduction" icon={<User size={20} />} variant="highlight">
         <p>
           My journey into computer science began long before I enrolled in the program at Southern 
           New Hampshire University. With a foundation in electronics engineering and years of 
@@ -22,7 +32,7 @@ export default function Assessment() {
         </p>
       </Section>
 
-      <Section title="My Journey Through the Program">
+      <Section title="My Journey Through the Program" icon={<Route size={20} />}>
         <p>
           When I began the Computer Science program, I had already spent years writing firmware 
           for microcontrollers and developing hardware-software interfaces. What I lacked was 
@@ -46,7 +56,7 @@ export default function Assessment() {
         </p>
       </Section>
 
-      <Section title="Collaborating in a Team Environment">
+      <Section title="Collaborating in a Team Environment" icon={<Users size={20} />}>
         <p>
           Software development is rarely a solitary endeavor, and my experience in this program 
           has reinforced the importance of collaboration. I worked with peers on shared codebases, 
@@ -62,7 +72,7 @@ export default function Assessment() {
         </p>
       </Section>
 
-      <Section title="Communicating with Stakeholders">
+      <Section title="Communicating with Stakeholders" icon={<MessageSquare size={20} />}>
         <p>
           One of the most valuable skills I have developed is the ability to translate technical 
           concepts for different audiences. Whether writing documentation for fellow developers, 
@@ -79,7 +89,7 @@ export default function Assessment() {
         </p>
       </Section>
 
-      <Section title="Data Structures and Algorithms">
+      <Section title="Data Structures and Algorithms" icon={<Workflow size={20} />}>
         <p>
           The algorithms and data structures I employ in the thermostat project reflect the 
           analytical thinking developed throughout the program. The control logic uses a 
@@ -97,7 +107,7 @@ export default function Assessment() {
         </p>
       </Section>
 
-      <Section title="Software Engineering and Database">
+      <Section title="Software Engineering and Database" icon={<Settings size={20} />}>
         <p>
           The software engineering enhancements to the thermostat project showcase professional 
           development practices. The firmware is organized into discrete components: sensor drivers, 
@@ -114,7 +124,7 @@ export default function Assessment() {
         </p>
       </Section>
 
-      <Section title="Security">
+      <Section title="Security" icon={<Shield size={20} />}>
         <p>
           Security is woven throughout the thermostat project. On the firmware side, 
           communication with the backend uses HTTPS with certificate validation. API 
@@ -132,7 +142,7 @@ export default function Assessment() {
         </p>
       </Section>
 
-      <Section title="Summary and Professional Readiness">
+      <Section title="Summary and Professional Readiness" icon={<Award size={20} />}>
         <p>
           The work presented in this ePortfolio demonstrates that I am ready to contribute 
           meaningfully to the field of computer science. The thermostat project showcases 

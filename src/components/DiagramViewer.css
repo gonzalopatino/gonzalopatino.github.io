@@ -109,6 +109,25 @@
   justify-content: center;
   padding: 14px;
   box-shadow: var(--glow-primary);
+  transform: scale(0.8);
+  transition: transform var(--transition-base);
+}
+
+.diagram-button:hover .diagram-zoom-icon,
+.diagram-button:focus-visible .diagram-zoom-icon {
+  transform: scale(1);
+  animation: zoom-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes zoom-pulse {
+  0%, 100% {
+    box-shadow: var(--glow-primary);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.5), 0 0 40px rgba(99, 102, 241, 0.3);
+    transform: scale(1.05);
+  }
 }
 
 .diagram-zoom-icon svg {

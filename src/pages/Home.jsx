@@ -1,19 +1,36 @@
 import { Link } from 'react-router-dom';
+import { 
+  ClipboardList, 
+  Search, 
+  Cog, 
+  RefreshCw, 
+  Database, 
+  Package, 
+  Rocket,
+  Pin,
+  Target,
+  Code,
+  Info,
+  Layers,
+  Navigation,
+  ArrowRight
+} from 'lucide-react';
 import Section from '../components/Section';
+import SystemFlowAnimation from '../components/SystemFlowAnimation';
 import './Home.css';
 
 // Card data for the navigation grid
 const overviewCards = [
   {
     path: '/assessment',
-    icon: '📋',
+    Icon: ClipboardList,
     title: 'Self-Assessment',
     description: 'Professional journey, goals, and skills demonstrated',
     color: 'primary'
   },
   {
     path: '/code-review',
-    icon: '🔍',
+    Icon: Search,
     title: 'Code Review',
     description: 'Video walkthrough of original code analysis',
     color: 'primary'
@@ -23,21 +40,21 @@ const overviewCards = [
 const artifactCards = [
   {
     path: '/software-engineering',
-    icon: '⚙️',
+    Icon: Cog,
     title: 'Software Engineering',
     description: 'Modular architecture, HAL, and FreeRTOS design',
     color: 'cyan'
   },
   {
     path: '/algorithms',
-    icon: '🔄',
+    Icon: RefreshCw,
     title: 'Algorithms',
     description: 'Finite state machines and hysteresis control',
     color: 'purple'
   },
   {
     path: '/database',
-    icon: '🗄️',
+    Icon: Database,
     title: 'Databases',
     description: 'Django backend with PostgreSQL telemetry',
     color: 'emerald'
@@ -47,14 +64,14 @@ const artifactCards = [
 const codeCards = [
   {
     path: '/original-code',
-    icon: '📦',
+    Icon: Package,
     title: 'Original Code',
     description: 'Raspberry Pi Python prototype',
     color: 'gray'
   },
   {
     path: '/enhanced-code',
-    icon: '🚀',
+    Icon: Rocket,
     title: 'Enhanced Code',
     description: 'ESP32 FreeRTOS production system',
     color: 'accent'
@@ -80,7 +97,7 @@ export default function Home() {
           <div className="home-hero__cta">
             <Link to="/assessment" className="btn btn--primary">
               Start Exploring
-              <span className="btn__icon">→</span>
+              <ArrowRight size={18} className="btn__icon" />
             </Link>
             <Link to="/code-review" className="btn btn--outline">
               Watch Code Review
@@ -94,21 +111,30 @@ export default function Home() {
         </div>
       </section>
 
+      {/* System Flow Animation */}
+      <section className="home-section home-section--animation">
+        <h2 className="home-section__title">
+          <span className="home-section__icon"><Layers size={20} /></span>
+          System Architecture
+        </h2>
+        <SystemFlowAnimation />
+      </section>
+
       {/* Overview Cards */}
       <section className="home-section">
         <h2 className="home-section__title">
-          <span className="home-section__icon">📌</span>
+          <span className="home-section__icon"><Pin size={20} /></span>
           Overview
         </h2>
         <div className="card-grid card-grid--2">
           {overviewCards.map((card) => (
             <Link key={card.path} to={card.path} className={`nav-card nav-card--${card.color}`}>
-              <span className="nav-card__icon">{card.icon}</span>
+              <span className="nav-card__icon"><card.Icon size={24} /></span>
               <div className="nav-card__content">
                 <h3 className="nav-card__title">{card.title}</h3>
                 <p className="nav-card__description">{card.description}</p>
               </div>
-              <span className="nav-card__arrow">→</span>
+              <ArrowRight size={18} className="nav-card__arrow" />
             </Link>
           ))}
         </div>
@@ -117,18 +143,18 @@ export default function Home() {
       {/* Artifact Cards */}
       <section className="home-section">
         <h2 className="home-section__title">
-          <span className="home-section__icon">🎯</span>
+          <span className="home-section__icon"><Target size={20} /></span>
           Enhancement Artifacts
         </h2>
         <div className="card-grid card-grid--3">
           {artifactCards.map((card) => (
             <Link key={card.path} to={card.path} className={`nav-card nav-card--${card.color}`}>
-              <span className="nav-card__icon">{card.icon}</span>
+              <span className="nav-card__icon"><card.Icon size={24} /></span>
               <div className="nav-card__content">
                 <h3 className="nav-card__title">{card.title}</h3>
                 <p className="nav-card__description">{card.description}</p>
               </div>
-              <span className="nav-card__arrow">→</span>
+              <ArrowRight size={18} className="nav-card__arrow" />
             </Link>
           ))}
         </div>
@@ -137,25 +163,25 @@ export default function Home() {
       {/* Code Repository Cards */}
       <section className="home-section">
         <h2 className="home-section__title">
-          <span className="home-section__icon">💻</span>
+          <span className="home-section__icon"><Code size={20} /></span>
           Code Repositories
         </h2>
         <div className="card-grid card-grid--2">
           {codeCards.map((card) => (
             <Link key={card.path} to={card.path} className={`nav-card nav-card--${card.color}`}>
-              <span className="nav-card__icon">{card.icon}</span>
+              <span className="nav-card__icon"><card.Icon size={24} /></span>
               <div className="nav-card__content">
                 <h3 className="nav-card__title">{card.title}</h3>
                 <p className="nav-card__description">{card.description}</p>
               </div>
-              <span className="nav-card__arrow">→</span>
+              <ArrowRight size={18} className="nav-card__arrow" />
             </Link>
           ))}
         </div>
       </section>
 
       {/* About Section */}
-      <Section title="About This Portfolio" variant="highlight">
+      <Section title="About This Portfolio" icon={<Info size={20} />} variant="highlight">
         <p>
           This ePortfolio was created to fulfill the requirements of the CS-499 Computer Science 
           Capstone at Southern New Hampshire University. It serves as a comprehensive demonstration 
@@ -170,10 +196,12 @@ export default function Home() {
       </Section>
 
       {/* Categories Section */}
-      <Section title="Artifact Categories">
+      <Section title="Artifact Categories" icon={<Layers size={20} />}>
         <div className="category-list">
           <div className="category-item">
-            <div className="category-item__icon category-item__icon--cyan">⚙️</div>
+            <div className="category-item__icon category-item__icon--cyan">
+              <Cog size={24} />
+            </div>
             <div className="category-item__content">
               <h4>Software Engineering and Design</h4>
               <p>
@@ -185,7 +213,9 @@ export default function Home() {
             </div>
           </div>
           <div className="category-item">
-            <div className="category-item__icon category-item__icon--purple">🔄</div>
+            <div className="category-item__icon category-item__icon--purple">
+              <RefreshCw size={24} />
+            </div>
             <div className="category-item__content">
               <h4>Algorithms and Data Structures</h4>
               <p>
@@ -197,7 +227,9 @@ export default function Home() {
             </div>
           </div>
           <div className="category-item">
-            <div className="category-item__icon category-item__icon--emerald">🗄️</div>
+            <div className="category-item__icon category-item__icon--emerald">
+              <Database size={24} />
+            </div>
             <div className="category-item__content">
               <h4>Databases</h4>
               <p>
@@ -212,7 +244,7 @@ export default function Home() {
       </Section>
 
       {/* Navigation Guide */}
-      <Section title="How to Navigate This Site">
+      <Section title="How to Navigate This Site" icon={<Navigation size={20} />}>
         <div className="steps-list">
           <div className="step-item">
             <div className="step-item__number">1</div>

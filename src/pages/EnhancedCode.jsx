@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
+import { Rocket, Package, Link as LinkIcon } from 'lucide-react';
 import Section from '../components/Section';
 
 export default function EnhancedCode() {
   return (
     <>
-      <Section title="A. Introduction" variant="highlight">
+      <Section title="A. Introduction" icon={<Rocket size={20} />} variant="highlight">
         <p>
           This page contains links to the enhanced, post-review versions of the thermostat 
           ecosystem. These artifacts demonstrate the improvements made as a result of the 
@@ -13,7 +14,7 @@ export default function EnhancedCode() {
         </p>
       </Section>
 
-      <Section title="B. Enhanced Project Components">
+      <Section title="B. Enhanced Project Components" icon={<Package size={20} />}>
         <ul className="component-list">
           <li>
             <a href="https://github.com/gonzalopatino/ESP32_FreeRTOS_Thermostat" target="_blank" rel="noopener noreferrer">ESP32 FreeRTOS Thermostat Firmware (C/C++)</a>
@@ -47,7 +48,7 @@ export default function EnhancedCode() {
         </ul>
       </Section>
 
-      <Section title="C. Relationship to Artifacts">
+      <Section title="C. Relationship to Artifacts" icon={<LinkIcon size={20} />}>
         <p>
           Each enhanced component is explained in more detail on the{' '}
           <Link to="/software-engineering">Software Engineering</Link>,{' '}

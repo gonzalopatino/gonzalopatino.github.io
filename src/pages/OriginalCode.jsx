@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
+import { FileCode, Package, Info } from 'lucide-react';
 import Section from '../components/Section';
 
 export default function OriginalCode() {
   return (
     <>
-      <Section title="A. Introduction" variant="highlight">
+      <Section title="A. Introduction" icon={<FileCode size={20} />} variant="highlight">
         <p>
           This page contains links to the original, pre-enhancement versions of the thermostat 
           project components. These artifacts represent the baseline codebase used during the 
@@ -13,7 +14,7 @@ export default function OriginalCode() {
         </p>
       </Section>
 
-      <Section title="B. Original Project Components">
+      <Section title="B. Original Project Components" icon={<Package size={20} />}>
         <ul className="component-list">
           <li>
             <a href="https://github.com/gonzalopatino/iot_thermostat_v1" target="_blank" rel="noopener noreferrer">Original Thermostat Application (CS-350 Python)</a>
@@ -45,7 +46,7 @@ export default function OriginalCode() {
         </ul>
       </Section>
 
-      <Section title="C. Notes for Evaluators">
+      <Section title="C. Notes for Evaluators" icon={<Info size={20} />}>
         <p>
           This page allows evaluators to inspect the pre-enhancement code that served as the 
           starting point for this capstone project. For detailed discussion of the issues 

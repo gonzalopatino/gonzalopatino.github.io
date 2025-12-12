@@ -1,0 +1,332 @@
+/* ============================================
+   SYSTEM FLOW ANIMATION
+   Thermostat to Cloud data flow visualization
+   ============================================ */
+
+.system-flow {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 280px;
+  margin: 0 auto;
+  padding: var(--spacing-6);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+}
+
+/* Subtle grid background */
+.system-flow__bg {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(var(--color-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* SVG paths container */
+.system-flow__paths {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Connection paths */
+.system-flow__path {
+  stroke: var(--color-border);
+  stroke-width: 2;
+  stroke-dasharray: 8 4;
+  transition: stroke var(--transition-base);
+}
+
+.system-flow.animating .system-flow__path {
+  stroke: var(--color-primary);
+  stroke-opacity: 0.4;
+}
+
+.system-flow__path--left {
+  stroke-dashoffset: 0;
+}
+
+.system-flow.animating .system-flow__path--left {
+  animation: dashFlow 1.5s linear infinite;
+}
+
+@keyframes dashFlow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+/* Animated pulses */
+.system-flow__pulse {
+  fill: var(--color-primary);
+  filter: drop-shadow(0 0 6px var(--color-primary));
+  opacity: 0;
+}
+
+.system-flow.animating .system-flow__pulse {
+  opacity: 1;
+  animation: pulseFade 2s ease-in-out infinite;
+}
+
+.system-flow__pulse--1 { animation-delay: 0s; }
+.system-flow__pulse--2 { animation-delay: 0.5s; }
+.system-flow__pulse--3 { animation-delay: 1s; }
+
+.system-flow__pulse--out-1,
+.system-flow__pulse--out-2,
+.system-flow__pulse--out-3 {
+  fill: var(--color-secondary);
+  filter: drop-shadow(0 0 4px var(--color-secondary));
+}
+
+@keyframes pulseFade {
+  0%, 100% { opacity: 0; }
+  20%, 80% { opacity: 1; }
+}
+
+/* Device nodes container */
+.system-flow__nodes {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-8) var(--spacing-6);
+}
+
+/* Individual node */
+.system-flow__node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2);
+  position: relative;
+}
+
+.system-flow__node-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: var(--color-bg-elevated);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  color: var(--color-text-secondary);
+  transition: all var(--transition-base);
+}
+
+.system-flow__node:hover .system-flow__node-icon {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: var(--glow-primary);
+  transform: scale(1.05);
+}
+
+.system-flow__node-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+/* Thermostat node - special styling */
+.system-flow__node--thermostat .system-flow__node-icon {
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, var(--color-bg-surface), var(--color-bg-elevated));
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.system-flow.animating .system-flow__node--thermostat .system-flow__node-icon {
+  animation: nodeGlow 3s ease-in-out infinite;
+}
+
+@keyframes nodeGlow {
+  0%, 100% { box-shadow: 0 0 15px var(--color-primary-glow); }
+  50% { box-shadow: 0 0 25px var(--color-primary-glow), 0 0 40px var(--color-primary-glow); }
+}
+
+/* Activity indicator */
+.system-flow__node-activity {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: var(--color-success);
+}
+
+.system-flow.animating .system-flow__node-activity {
+  animation: activityPulse 1s ease-in-out infinite;
+}
+
+@keyframes activityPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Cloud node - central */
+.system-flow__node--cloud {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.system-flow__node--cloud .system-flow__node-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--color-bg-hover), var(--color-bg-surface));
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.system-flow.animating .system-flow__node--cloud .system-flow__node-icon {
+  animation: cloudPulse 4s ease-in-out infinite;
+}
+
+@keyframes cloudPulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px var(--color-accent-glow);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 35px var(--color-accent-glow);
+    transform: scale(1.02);
+  }
+}
+
+/* Output devices group */
+.system-flow__outputs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.system-flow__node--device .system-flow__node-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--color-bg-elevated);
+}
+
+.system-flow__node--device .system-flow__node-label {
+  font-size: 10px;
+}
+
+/* Data labels */
+.system-flow__labels {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.system-flow__label {
+  position: absolute;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  background: var(--color-bg-surface);
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+}
+
+.system-flow__label--left {
+  top: 75%;
+  left: 22%;
+}
+
+.system-flow__label--right {
+  top: 75%;
+  right: 18%;
+}
+
+/* Static state (reduced motion) */
+.system-flow.static .system-flow__path {
+  stroke: var(--color-primary);
+  stroke-opacity: 0.3;
+  stroke-dasharray: none;
+}
+
+.system-flow.static .system-flow__node--thermostat .system-flow__node-icon,
+.system-flow.static .system-flow__node--cloud .system-flow__node-icon {
+  box-shadow: 0 0 15px var(--color-primary-glow);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .system-flow {
+    height: 220px;
+    padding: var(--spacing-4);
+  }
+
+  .system-flow__node-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .system-flow__node--thermostat .system-flow__node-icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .system-flow__node--cloud .system-flow__node-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .system-flow__node--device .system-flow__node-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .system-flow__outputs {
+    gap: var(--spacing-2);
+  }
+
+  .system-flow__label {
+    display: none;
+  }
+
+  .system-flow__node-label {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 480px) {
+  .system-flow {
+    height: 180px;
+  }
+
+  .system-flow__node--device {
+    display: none;
+  }
+
+  .system-flow__node--device:first-child {
+    display: flex;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .system-flow__path,
+  .system-flow__pulse,
+  .system-flow__node-icon,
+  .system-flow__node-activity {
+    animation: none !important;
+  }
+}

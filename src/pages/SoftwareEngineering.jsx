@@ -1,4 +1,14 @@
 import { Link } from 'react-router-dom';
+import { 
+  Layers, 
+  Cpu, 
+  Settings, 
+  GitBranch, 
+  Network, 
+  CheckCircle, 
+  FileCode,
+  BookOpen
+} from 'lucide-react';
 import Section from '../components/Section';
 import DiagramViewer from '../components/DiagramViewer';
 import PageHero from '../components/PageHero';
@@ -6,6 +16,7 @@ import TableOfContents from '../components/TableOfContents';
 import KeyTakeaways from '../components/KeyTakeaways';
 import ComparisonBlock from '../components/ComparisonBlock';
 import CTAFooter from '../components/CTAFooter';
+import SystemFlowAnimation from '../components/SystemFlowAnimation';
 
 const tocItems = [
   { id: 'overview', label: 'Artifact Overview' },
@@ -68,11 +79,13 @@ export default function SoftwareEngineering() {
         badges={['ESP32', 'FreeRTOS', 'C/C++', 'Embedded Systems', 'Modular Architecture', 'HAL']}
       />
 
+      <SystemFlowAnimation />
+
       <TableOfContents items={tocItems} />
 
       <KeyTakeaways items={keyTakeaways} />
 
-      <Section id="overview" title="Artifact Overview" variant="highlight">
+      <Section id="overview" title="Artifact Overview" icon={<Layers size={20} />} variant="highlight">
         <p>
           This artifact showcases the software engineering and design practices I applied to transform a basic thermostat project into a professional-grade embedded system. The enhanced thermostat runs on an ESP32 microcontroller using FreeRTOS, featuring a modular task-based architecture that separates sensor reading, control logic, logging, and network communication into distinct, maintainable components. The system demonstrates core software engineering principles including separation of concerns, loose coupling, and cohesive module design.
         </p>
@@ -81,7 +94,7 @@ export default function SoftwareEngineering() {
         </p>
       </Section>
 
-      <Section id="original-design" title="Original Design (Pre-Enhancement)">
+      <Section id="original-design" title="Original Design (Pre-Enhancement)" icon={<Cpu size={20} />}>
         <p>
           The original thermostat project was developed during CS-350 as an introduction to embedded systems programming. Like many academic projects, it prioritized getting something working over long-term maintainability. The code was largely monolithic, with sensor reading, temperature comparisons, and output control logic intermingled in a single main loop. There was little separation between what the system did and how it interacted with specific hardware peripherals.
         </p>
@@ -100,7 +113,7 @@ export default function SoftwareEngineering() {
         enhanced={comparisonEnhanced}
       />
 
-      <Section id="enhanced-design" title="Enhanced Design and Architecture">
+      <Section id="enhanced-design" title="Enhanced Design and Architecture" icon={<Settings size={20} />}>
         <p>
           The enhanced thermostat was redesigned from the ground up using FreeRTOS on the ESP32 platform. Instead of a monolithic main loop, the system now operates as a collection of concurrent tasks, each responsible for a specific domain of functionality. This task-based architecture allows each component to operate independently, communicate through well-defined interfaces, and be modified without affecting unrelated parts of the system.
         </p>
@@ -121,7 +134,7 @@ export default function SoftwareEngineering() {
         </p>
       </Section>
 
-      <Section id="practices" title="Software Engineering Practices Demonstrated">
+      <Section id="practices" title="Software Engineering Practices Demonstrated" icon={<GitBranch size={20} />}>
         <p>
           The thermostat project demonstrates several software engineering practices that distinguish professional development from academic exercises. The modular component design means that each source file has a clear, focused responsibility and exposes a well-defined interface to other modules. Internal implementation details are hidden, allowing me to refactor individual components without rippling changes throughout the codebase.
         </p>
@@ -139,7 +152,7 @@ export default function SoftwareEngineering() {
         </p>
       </Section>
 
-      <Section id="connections" title="Connection to Other Artifacts">
+      <Section id="connections" title="Connection to Other Artifacts" icon={<Network size={20} />}>
         <p>
           The Software Engineering artifact represents the structural foundation upon which the other artifacts build. The Algorithms artifact examines the control logic that runs within the control task, exploring the state machine design, hysteresis implementation, and timing decisions that determine when heating and cooling activate. That analysis focuses on computational correctness and efficiency rather than the modular structure that contains it.
         </p>
@@ -148,7 +161,7 @@ export default function SoftwareEngineering() {
         </p>
       </Section>
 
-      <Section id="outcomes" title="Course Outcomes Mapping">
+      <Section id="outcomes" title="Course Outcomes Mapping" icon={<CheckCircle size={20} />}>
         <p>
           <strong>Outcome 1 - Collaboration and Professional Practice:</strong> Throughout this project, I used Git for version control, maintaining a clear branching strategy that separated feature development from stable releases. I documented design decisions in README files and code comments so that other developers could understand not just what the code does but why it was structured that way. When making significant architectural changes, I considered how those changes would affect anyone else working on the project, writing interfaces that were intuitive and self-documenting.
         </p>
@@ -160,7 +173,7 @@ export default function SoftwareEngineering() {
         </p>
       </Section>
 
-      <Section id="diagrams" title="Architecture Diagrams & Documents">
+      <Section id="diagrams" title="Architecture Diagrams & Documents" icon={<FileCode size={20} />}>
         <p>
           The following diagrams illustrate the enhanced system architecture and component relationships:
         </p>

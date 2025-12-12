@@ -1,4 +1,12 @@
 import { Link } from 'react-router-dom';
+import { 
+  FileSearch, 
+  Video, 
+  ClipboardList, 
+  AlertTriangle, 
+  Rocket, 
+  Lightbulb 
+} from 'lucide-react';
 import Section from '../components/Section';
 import PageHero from '../components/PageHero';
 import TableOfContents from '../components/TableOfContents';
@@ -51,13 +59,13 @@ export default function CodeReview() {
 
       <KeyTakeaways items={keyTakeaways} />
 
-      <Section id="introduction" title="Code Review Introduction" variant="highlight">
+      <Section id="introduction" title="Code Review Introduction" icon={<FileSearch size={20} />} variant="highlight">
         <p>
           The purpose of this code review was to perform a structured, professional analysis of the original CS-350 thermostat artifact running on a Raspberry Pi using Python. The review focused on identifying weaknesses in architecture, reliability, readability, algorithmic behavior, and long-term maintainability. This evaluation served as the foundation for the enhancements implemented in the CS-499 capstone, guiding the redesign of both the embedded firmware and the backend data platform.
         </p>
       </Section>
 
-      <Section id="video" title="Code Review Video">
+      <Section id="video" title="Code Review Video" icon={<Video size={20} />}>
         <div className="video-container">
           <iframe
             src="https://www.youtube.com/embed/56SD_WsoBfo?start=24"
@@ -71,7 +79,7 @@ export default function CodeReview() {
         </p>
       </Section>
 
-      <Section id="findings" title="Summary of Review Findings">
+      <Section id="findings" title="Summary of Review Findings" icon={<ClipboardList size={20} />}>
         <p>
           The review revealed that while the original thermostat prototype achieved functional temperature control, it suffered from several deficiencies that would prevent it from operating reliably or scaling beyond a classroom demonstration. The code was implemented as a single Python script responsible for sensing, decision-making, output control, and timing. This monolithic structure made the system difficult to extend, test, or reason about.
         </p>
@@ -80,7 +88,7 @@ export default function CodeReview() {
         </p>
       </Section>
 
-      <Section id="issues" title="Key Issues Identified">
+      <Section id="issues" title="Key Issues Identified" icon={<AlertTriangle size={20} />}>
         <h3>1. Monolithic Architecture</h3>
         <p>
           The original implementation placed sensing, temperature evaluation, GPIO output control, UI display behavior, and timing functions inside a single script. This tight coupling made the code fragile, as a change in one part of the system risked unintended consequences elsewhere. The lack of layering, hardware abstraction, or modular design made the system nearly impossible to scale or refactor. Professional embedded systems require clear component boundaries, which the prototype lacked.
@@ -112,7 +120,7 @@ export default function CodeReview() {
         </p>
       </Section>
 
-      <Section id="enhancements" title="Planned Enhancements">
+      <Section id="enhancements" title="Planned Enhancements" icon={<Rocket size={20} />}>
         <p>
           Each issue identified in the code review directly influenced the enhancement strategy across all three artifact categories in the capstone.
         </p>
@@ -133,7 +141,7 @@ export default function CodeReview() {
         </p>
       </Section>
 
-      <Section id="reflection" title="Professional Reflection">
+      <Section id="reflection" title="Professional Reflection" icon={<Lightbulb size={20} />}>
         <p>
           Performing this code review was one of the most valuable stages of the capstone experience. It required me to step back and evaluate my earlier work objectively, identifying not only what functioned poorly but also why those issues mattered. The exercise reinforced the importance of separation of concerns, defensive programming, and algorithmic rigor. It highlighted how quickly technical debt accumulates when architecture and documentation are deprioritized.
         </p>

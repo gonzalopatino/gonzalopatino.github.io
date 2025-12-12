@@ -1,4 +1,13 @@
 import { Link } from 'react-router-dom';
+import { 
+  Layers, 
+  HardDrive, 
+  Database as DatabaseIcon, 
+  FileSearch, 
+  ShieldCheck, 
+  CheckCircle, 
+  FileCode 
+} from 'lucide-react';
 import Section from '../components/Section';
 import DiagramViewer from '../components/DiagramViewer';
 import PageHero from '../components/PageHero';
@@ -6,6 +15,7 @@ import TableOfContents from '../components/TableOfContents';
 import KeyTakeaways from '../components/KeyTakeaways';
 import ComparisonBlock from '../components/ComparisonBlock';
 import CTAFooter from '../components/CTAFooter';
+import SystemFlowAnimation from '../components/SystemFlowAnimation';
 
 const tocItems = [
   { id: 'overview', label: 'Artifact Overview' },
@@ -68,11 +78,13 @@ export default function Database() {
         badges={['PostgreSQL', 'Django', 'REST API', 'Security', 'ORM', 'Telemetry']}
       />
 
+      <SystemFlowAnimation />
+
       <TableOfContents items={tocItems} />
 
       <KeyTakeaways items={keyTakeaways} />
 
-      <Section id="overview" title="Artifact Overview" variant="highlight">
+      <Section id="overview" title="Artifact Overview" icon={<Layers size={20} />} variant="highlight">
         <p>
           This artifact demonstrates the database design and data management practices I implemented to support the thermostat ecosystem's backend infrastructure. The enhanced system uses PostgreSQL as its relational database, accessed through Django's ORM, to provide persistent storage for device telemetry, user accounts, device registrations, and alert configurations. Proper database design transforms the thermostat from an isolated embedded device into a connected system capable of historical analysis, trend visualization, and intelligent alerting.
         </p>
@@ -81,7 +93,7 @@ export default function Database() {
         </p>
       </Section>
 
-      <Section id="original-approach" title="Original Data Handling Approach">
+      <Section id="original-approach" title="Original Data Handling Approach" icon={<HardDrive size={20} />}>
         <p>
           The original CS-350 thermostat project had no database component whatsoever. Sensor readings existed only in memory during program execution and were lost when the device powered down or restarted. There was no mechanism for storing historical temperature data, no way to track setpoint changes over time, and no persistent record of heating or cooling cycles. The system operated entirely in the present moment with no concept of data persistence.
         </p>
@@ -100,7 +112,7 @@ export default function Database() {
         enhanced={comparisonEnhanced}
       />
 
-      <Section id="enhanced-design" title="Enhanced Database Design">
+      <Section id="enhanced-design" title="Enhanced Database Design" icon={<DatabaseIcon size={20} />}>
         <p>
           The enhanced thermostat ecosystem includes a Django backend with PostgreSQL that implements a properly normalized relational schema. I designed the database around core entities that reflect the real-world objects and relationships in the system: Users who own and manage devices, Devices that represent physical thermostats, Telemetry Snapshots that capture point-in-time readings, Device API Keys that authenticate device communication, and Alert Settings that define notification thresholds.
         </p>
@@ -118,7 +130,7 @@ export default function Database() {
         </p>
       </Section>
 
-      <Section id="data-management" title="Data Management and Querying">
+      <Section id="data-management" title="Data Management and Querying" icon={<FileSearch size={20} />}>
         <p>
           Data ingestion follows a structured pipeline that validates, normalizes, and stores incoming telemetry. When a device posts a reading to the ingestion endpoint, the system first authenticates the request using the hashed API key. It then validates that all required fields are present and that values fall within plausible ranges. Timestamps are normalized to UTC before storage. Only after passing all validation checks is the data written to the database, ensuring that corrupt or malformed readings never pollute the dataset.
         </p>
@@ -136,7 +148,7 @@ export default function Database() {
         </p>
       </Section>
 
-      <Section id="security" title="Security and Reliability Considerations">
+      <Section id="security" title="Security and Reliability Considerations" icon={<ShieldCheck size={20} />}>
         <p>
           Security is woven throughout the database design rather than bolted on as an afterthought. API keys are never stored in plaintext; only their cryptographic hashes exist in the database. This means that database backups, logs, and debugging sessions never expose credentials that could be used to impersonate devices. Key rotation is supported through the administrative interface, allowing users to revoke compromised keys without disrupting other devices.
         </p>
@@ -154,7 +166,7 @@ export default function Database() {
         </p>
       </Section>
 
-      <Section id="outcomes" title="Course Outcomes Mapping">
+      <Section id="outcomes" title="Course Outcomes Mapping" icon={<CheckCircle size={20} />}>
         <p>
           <strong>Outcome 3 - Designing and Evaluating Computing Solutions:</strong> This artifact demonstrates my ability to design computing solutions using sound database modeling principles. I analyzed the data requirements of the thermostat ecosystem, identified the entities and relationships that needed to be represented, and designed a normalized schema that balances query efficiency against storage overhead. The choice of relational modeling over document storage reflects an evaluation of the data's structure and access patterns, selecting the approach best suited to the application's needs.
         </p>
@@ -166,7 +178,7 @@ export default function Database() {
         </p>
       </Section>
 
-      <Section id="diagrams" title="Database Schema & Documents">
+      <Section id="diagrams" title="Database Schema & Documents" icon={<FileCode size={20} />}>
         <p>
           The following diagrams illustrate the database architecture and data flow:
         </p>
