@@ -23,6 +23,8 @@ export default function App() {
           <Route path="database" element={<Database />} />
           <Route path="original-code" element={<OriginalCode />} />
           <Route path="enhanced-code" element={<EnhancedCode />} />
+          {/* Catch-all route - prevents blank page on unknown routes */}
+          <Route path="*" element={<Home />} />
         </Route>
       </Routes>
     </BrowserRouter>
